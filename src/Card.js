@@ -3,7 +3,7 @@ import React from 'react'
 const Card = (props) => {
 	let content = props.data.content.rendered.replace('<p>','').replace('</p>','');
 	return (
-		<div>
+		<section>
 			<div>
 				<h3>{props.data.title.rendered}</h3>
 				<img src={props.data.jetpack_featured_media_url} />
@@ -11,7 +11,7 @@ const Card = (props) => {
 			<div>
 				{content}
 			</div>
-		</div>
+		</section>
 	);
 }
 
