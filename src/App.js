@@ -14,13 +14,14 @@ class App extends React.Component {
   }
 
   getCards(type) {
+    const myBlog = 'dangstuffandjunk.home.blog';
     let url = '';
     if (type === 'dog') {
-      url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url&tags=1798';
+      url = 'https://public-api.wordpress.com/wp/v2/sites/'+myBlog+'/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url&tags=1798';
     } else if (type === 'cat') {
-      url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url&tags=5308';
+      url = 'https://public-api.wordpress.com/wp/v2/sites/'+myBlog+'/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url&tags=5308';
     } else {
-      url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url';
+      url = 'https://public-api.wordpress.com/wp/v2/sites/'+myBlog+'/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url';
     }
 
     fetch(url)
@@ -57,7 +58,7 @@ class App extends React.Component {
             <label htmlFor="both">Both</label>
             <input type="radio" name="type" value="both" id="both" checked={this.state.type === 'both'} onChange={this.handleChange} />
           </header>
-          
+
           <main>
             {cards}
           </main>
