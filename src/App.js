@@ -5,7 +5,9 @@ import Card from './Card';
 class App extends React.Component {
   constructor() {
     super();
-    this.state = {};
+    this.state = {
+      type: 'both'
+    };
     this.getCards();
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,9 +31,12 @@ class App extends React.Component {
   handleChange(e) {
     this.setState({
       type: e.target.value
+    }, () => {
+      this.getCards(this.state.type);
+    console.log("handleChange says, "+this.state.type); 
     });
 
-    this.getCards(this.state.type);
+    
   }
 
 
@@ -49,6 +54,9 @@ class App extends React.Component {
               
             <label htmlFor="cat">Cats</label>
             <input type="radio" name="type" value="cat" id="cat" checked={this.state.type === 'cat'} onChange={this.handleChange} />
+
+            <label htmlFor="both">Both</label>
+            <input type="radio" name="type" value="both" id="both" checked={this.state.type === 'both'} onChange={this.handleChange} />
           </header>
           <main>
             {cards}

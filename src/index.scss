@@ -6,14 +6,18 @@ body {
 	font-family: sans-serif;
 }
 
+main {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
 section {
 	background: white;
 	margin: 3rem;
 	padding: 2rem;
 	border-radius: 1rem;
 	border: 1px solid #CCCCCC;
-	max-width: 50%;
-	min-width: 350px;
+	width: 100%;
 
 	.img {
 		max-width: 100%;
