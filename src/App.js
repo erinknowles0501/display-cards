@@ -33,7 +33,6 @@ class App extends React.Component {
       type: e.target.value
     }, () => {
       this.getCards(this.state.type);
-    console.log("handleChange says, "+this.state.type); 
     });
 
     
@@ -58,6 +57,7 @@ class App extends React.Component {
             <label htmlFor="both">Both</label>
             <input type="radio" name="type" value="both" id="both" checked={this.state.type === 'both'} onChange={this.handleChange} />
           </header>
+          
           <main>
             {cards}
           </main>
