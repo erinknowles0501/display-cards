@@ -6,13 +6,20 @@ class App extends React.Component {
   constructor() {
     super();
     this.state = {};
+    this.getCards();
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
-  componentDidMount() {
-    const url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url';
+  getCards() {
+    let url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url';
     fetch(url)
     .then(res => res.json())
     .then(data => this.setState({ data: data }));
+  }
+
+  handleChange() {
+    console.log('hewwo');
   }
 
 
@@ -24,6 +31,11 @@ class App extends React.Component {
 
       return (
         <main>
+          <header>
+            <input type="radio" name="type" value="dog" checked={false} onChange={this.handleChange} />
+            <input type="radio" name="type" value="cat" checked={true} onChange={this.handleChange} />
+          </header>
+
           {cards}
         </main>
       );
