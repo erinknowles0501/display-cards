@@ -11,15 +11,27 @@ class App extends React.Component {
     this.handleChange = this.handleChange.bind(this);
   }
 
-  getCards() {
-    let url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url';
+  getCards(type) {
+    let url = '';
+    if (type === 'dog') {
+      url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url&tags=1798';
+    } else if (type === 'cat') {
+      url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url&tags=5308';
+    } else {
+      url = 'https://public-api.wordpress.com/wp/v2/sites/dangstuffandjunk.home.blog/posts?_fields=id,date,link,title,content,categories,tags,jetpack_featured_media_url';
+    }
+
     fetch(url)
     .then(res => res.json())
     .then(data => this.setState({ data: data }));
   }
 
-  handleChange() {
-    console.log('hewwo');
+  handleChange(e) {
+    this.setState({
+      type: e.target.value
+    });
+
+    this.getCards(this.state.type);
   }
 
 
@@ -30,14 +42,18 @@ class App extends React.Component {
       });
 
       return (
-        <main>
+        <>
           <header>
-            <input type="radio" name="type" value="dog" checked={false} onChange={this.handleChange} />
-            <input type="radio" name="type" value="cat" checked={true} onChange={this.handleChange} />
+            <label htmlFor="dog">Dogs</label>
+            <input type="radio" name="type" value="dog" id="dog" checked={this.state.type === 'dog'} onChange={this.handleChange} />
+              
+            <label htmlFor="cat">Cats</label>
+            <input type="radio" name="type" value="cat" id="cat" checked={this.state.type === 'cat'} onChange={this.handleChange} />
           </header>
-
-          {cards}
-        </main>
+          <main>
+            {cards}
+          </main>
+        </>
       );
     } else {
       return (
