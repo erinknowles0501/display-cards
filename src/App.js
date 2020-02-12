@@ -18,9 +18,13 @@ class App extends React.Component {
 
   render() {
     if (this.state.data) {
+      const cards = this.state.data.map((cardData, i) => {
+        return <Card key={i} data={cardData} />
+      });
+
       return (
         <main>
-          <Card />
+          {cards}
         </main>
       );
     } else {
