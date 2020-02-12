@@ -15,8 +15,11 @@ section {
 	max-width: 50%;
 	min-width: 350px;
 
-	img {
+	.img {
 		max-width: 100%;
-		object-fit: cover;
+		height: auto;
+		padding: 50% 50%;
+		background-size: cover;
+		background-position: center;
 	}
 }
